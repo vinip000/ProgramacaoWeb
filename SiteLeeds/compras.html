@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilocompras.css">
+    <title>Insira seus Dados</title>
+</head>
+<body>
+
+    <header>
+        <h1>Insira seus dados</h1>
+    </header>
+
+    <main>
+        <form>
+            <div class="container"> 
+                <h2>Informações pessoais</h2>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required> <br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required> <br><br>
+
+                <label for="telefone">Telefone:</label>
+                <input pattern="[0-9]{11}" type="text" id="telefone" name="telefone" required> <br><br>
+            </div>
+
+            <div class="container">
+                <h2>Endereço</h2>
+                <label for="cep">CEP:</label>
+                <input pattern="[0-9]{8}" type="text" id="cep" name="cep" required><br><br>
+
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" required><br><br>
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required><br><br>
+
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required><br><br>
+
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" required> <br><br>
+
+                <input type="submit" value="Salvar" class="botao">
+            </div>
+
+            <br><br>
+            <a href="dadosbancarios.html" class="botao">Próximo</a>
+        </form>
+    </main>
+</body>
+</html>

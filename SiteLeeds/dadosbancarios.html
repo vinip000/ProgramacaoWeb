@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dadosbancarios.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Insira seus dados bancários</h1>
+    </header>
+
+    <main>
+        <div class="container"> 
+            <h2>Informações pessoais</h2>
+
+            <label for="numerocartao">Número do Cartão :</label>
+            <input type="text" id="numerocartao" name="numerocartao" required> <br><br>
+
+            <label for="validade">Validade:</label>
+            <input type="text" id="validade" name="validade" required> <br><br>
+
+            <label for="codsegurança">Código de Segurança:</label>
+            <input pattern="[0-9]{3}" type="text" id="codsegurança" name="codsegurança" required> <br><br>
+
+            <input type="button" value="Salvar" class="botao" onclick="salvarDados(event)">
+        </div>
+    </main>
+
+    <script type="text/javascript" src="dadosbancarios.js"></script>
+</body>
+</html>

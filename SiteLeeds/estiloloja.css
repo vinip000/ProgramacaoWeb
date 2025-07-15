@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+header {
+    background-color:  #002f6c;
+    color: white;
+  padding: 15px;
+    font-size: 24px;
+    display: grid;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.produto {
+    background: white;
+    border: 1px solid #ddd;
+    margin: 15px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+}
+.produto img {
+    width: 100%;
+    height: auto;
+}
+.botao {
+    display: inline-block;
+    background: gold;
+    color: black;
+    padding: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #002f6c;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
