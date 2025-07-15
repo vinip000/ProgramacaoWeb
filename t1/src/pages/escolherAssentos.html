@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolher Assentos</title>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: #111827;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: black;
+      height: 70px;
+      padding: 0 10%;
+    }
+
+    .header__name__logo {
+      font-size: 2rem;
+      color: #bf0000;
+      font-weight: bold;
+    }
+
+    .header__ul__container {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      font-size: 1.1rem;
+      color: white;
+      gap: 2rem;
+    }
+    
+    .header__ul__container li {
+      cursor: pointer;
+    }
+
+    main {
+        padding: 2rem 10%;
+    }
+
+    .main__stepBystep__container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .main__stepBystep__box {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        width: 20%;
+    }
+
+    .main__stepBystep__box__circule {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #374151;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .main__stepBystep__box__circule.active {
+        background-color: #bf0000;
+    }
+
+    .main__stepBystep__box__circule.completed {
+        background-color: #bf0000;
+    }
+
+    .main__stepBystep__box__text {
+        color: white;
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+
+    .main__stepBystep__progresBar {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background-color: #374151;
+        border-radius: 8px;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .main__stepBystep__progresBar::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 25%; 
+        background-color: #bf0000;
+        border-radius: 8px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .assentos {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+
+    .assento {
+        width: 40px;
+        height: 40px;
+        background-color: #374151;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .assento.selecionado {
+        background-color: #bf0000;
+    }
+
+    .btn-continuar {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .btn-continuar button {
+        background-color: #bf0000;
+        color: white;
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-continuar button:hover {
+        background-color: #a30000;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header__name__logo">CineMax</div>
+    <ul class="header__ul__container">
+      <li>Movies</li>
+      <li>Theaters</li>
+      <li>Promotions</li>
+      <li>Contact</li>
+    </ul>
+  </header>
+
+  <main>
+    <div class="main__stepBystep__container">
+      <div class="main__stepBystep__progresBar"></div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">1</div>
+        <p class="main__stepBystep__box__text">Escolha o Filme</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule active">2</div>
+        <p class="main__stepBystep__box__text">Escolha os Assentos</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule">3</div>
+        <p class="main__stepBystep__box__text">Combos</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule">4</div>
+        <p class="main__stepBystep__box__text">Pagamento</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule">5</div>
+        <p class="main__stepBystep__box__text">Review</p>
+      </div>
+    </div>
+
+    <h1>Escolha seus assentos</h1>
+
+    <div class="assentos" id="assentosContainer"></div>
+
+    <div class="btn-continuar">
+      <button id="btnContinuar">Continuar</button>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="../script/assentos.js"></script>
+</body>
+</html>

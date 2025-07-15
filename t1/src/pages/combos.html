@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineMax</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: black;
+      height: 10vh;
+      padding: 0 2rem;
+    }
+
+    .header__name__logo {
+      font-size: 2rem;
+      color: #bf0000;
+    }
+
+    .header__ul__container {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      font-size: 1.1rem;
+      color: white;
+      gap: 2rem;
+    }
+
+    main {
+      background-color: #111827;
+    }
+
+    .main__stepBystep__container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 10rem 2rem;
+    }
+
+    .main__stepBystep__box {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .main__stepBystep__box__circule {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #374151;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .main__stepBystep__box__circule.active {
+      background-color: #bf0000;
+    }
+
+    
+    .main__stepBystep__box__circule.completed {
+      background-color: #bf0000;
+    }
+
+    .main__stepBystep__box__text {
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .main__stepBystep__progresBar {
+      position: absolute;
+      top: 4.5rem;
+      left: 10rem;
+      right: 10rem;
+      height: 8px;
+      background-color: #374151;
+      border-radius: 8px;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .main__stepBystep__progresBar::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 50%; 
+      background-color: #bf0000;
+      transition: width 0.3s ease-in-out;
+      border-radius: 8px;
+    }
+
+    section {
+      padding: 0 2rem 5rem;
+    }
+
+    .section__title {
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      padding-top: 4rem;
+      font-size: 2.2rem;
+    }
+
+    .section__grid__combos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .section__grid_combos__card {
+      display: flex;
+      flex-direction: column;
+      width: 378px;
+      margin-top: 2rem;
+      transition: all .1s ease-in;
+    }
+
+    .section__grid_combos__card:hover {
+      transform: scale(1.025);
+    }
+
+    .section__grid__combos__card__informs {
+      color: white;
+      background-color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem;
+      border-end-end-radius: 12px;
+      border-end-start-radius: 12px;
+    }
+
+    .section__grid__combos__card__informs__container_in {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .section__grid__combos__card__informs__title {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    .section__grid__combos__card__informs__content {
+      font-size: 1rem;
+      color: #d1d5db;
+      margin-top: 0.5rem;
+    }
+
+    .section__grid_combos__card__image {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .combo-price {
+      color: #bf0000;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    .add-button {
+      background-color: #bf0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .add-button:hover {
+      background-color: #a00000;
+    }
+    
+    #notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="notification">Item added to cart!</div>
+  
+  <header>
+    <div class="header__name__logo">CineMax</div>
+    <ul class="header__ul__container">
+      <li>Movies</li>
+      <li>Theaters</li>
+      <li>Promotions</li>
+      <li>Contact</li>
+    </ul>
+  </header>
+
+  <main>
+    <div class="main__stepBystep__container">
+      <div class="main__stepBystep__progresBar"></div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">1</div>
+        <p class="main__stepBystep__box__text">Escolha o Filme</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">2</div>
+        <p class="main__stepBystep__box__text">Escolha os Assentos</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule active">3</div>
+        <p class="main__stepBystep__box__text">Combos</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule">4</div>
+        <p class="main__stepBystep__box__text">Pagamento</p>
+      </div>
+
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule">5</div>
+        <p class="main__stepBystep__box__text">Review</p>
+      </div>
+    </div>
+
+    <section>
+      <h2 class="section__title">Nossos Combos</h2>
+      <div class="section__grid__combos" id="combosContainer"></div>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="../script/combos.js"></script>
+</body>
+</html>

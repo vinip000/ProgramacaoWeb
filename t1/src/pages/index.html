@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #111827;
+    color: white;
+  }
+  
+  header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    height: 10vh;
+    padding: 0 2rem;
+  }
+  
+  .header__name__logo {
+    font-size: 2rem;
+    color: #bf0000;
+    font-weight: bold;
+  }
+  
+  .header__ul__container {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-size: 1.1rem;
+    gap: 2rem;
+  }
+  
+  .header__ul__container li {
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .header__ul__container li::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #bf0000;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .header__ul__container li:hover::after {
+    width: 100%;
+  }
+  
+  .header__ul__container li:hover {
+    color: #bf0000;
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    text-align: center;
+    position: relative;
+  }
+  
+  .home-logo {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #bf0000;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  }
+  
+  .home-tagline {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  }
+  
+  .start-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #bf0000;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-button:hover {
+    background-color: #a60000;
+  }
+  
+  .cinema-background {
+    height: 100px;
+    background-color: #000;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header__name__logo">CineMax</div>
+    <ul class="header__ul__container">
+      <li>Movies</li>
+      <li>Theaters</li>
+      <li>Promotions</li>
+      <li>Contact</li>
+    </ul>
+  </header>
+
+  <div class="home-container">
+    <div class="home-logo">CineMax</div>
+    <div class="home-tagline">O melhor cinema espera por você!!</div>
+    <button class="start-button" onclick="redirectToSelectFilms()">START NOW</button>
+  </div>
+
+  <div class="cinema-background"></div>
+
+  <script>
+    function redirectToSelectFilms() {
+      window.location.href = "./selectFilms.html";
+    }
+  </script>
+</body>
+</html>

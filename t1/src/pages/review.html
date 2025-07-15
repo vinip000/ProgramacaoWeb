@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review - CineMax</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #111827;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: black;
+      height: 70px;
+      padding: 0 10%;
+    }
+
+    .header__name__logo {
+      font-size: 2rem;
+      color: #bf0000;
+      font-weight: bold;
+    }
+
+    .header__ul__container {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      font-size: 1.1rem;
+      color: white;
+      gap: 2rem;
+    }
+    
+    .header__ul__container li {
+      cursor: pointer;
+    }
+
+    main {
+      padding: 2rem 10%;
+    }
+
+    .main__stepBystep__container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .main__stepBystep__box {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      width: 20%;
+    }
+
+    .main__stepBystep__box__circule {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #374151;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .main__stepBystep__box__circule.active {
+      background-color: #bf0000;
+    }
+
+    .main__stepBystep__box__circule.completed {
+      background-color: #bf0000;
+    }
+
+    .main__stepBystep__box__text {
+      color: white;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    .main__stepBystep__progresBar {
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background-color: #374151;
+      border-radius: 8px;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .main__stepBystep__progresBar::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%; 
+      background-color: #bf0000;
+      border-radius: 8px;
+    }
+
+    .review__container {
+      background-color: #1f2937;
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .review__title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #f3f4f6;
+      text-align: center;
+    }
+
+    .review__section {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #374151;
+      padding-bottom: 1.5rem;
+    }
+
+    .review__section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .review__section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #bf0000;
+    }
+
+    .review__item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .review__label {
+      font-weight: bold;
+      color: #d1d5db;
+    }
+
+    .review__value {
+      color: white;
+    }
+
+    .seats__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .seat__tag {
+      background-color: #374151;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .total__price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 1rem;
+      color: #bf0000;
+    }
+
+    .payment__info {
+      margin-top: 0.5rem;
+    }
+
+    .payment__card {
+      background-color: #374151;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card__number {
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #bf0000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #a00000;
+    }
+
+    .button.secondary {
+      background-color: #4b5563;
+    }
+
+    .button.secondary:hover {
+      background-color: #374151;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header__name__logo">CineMax</div>
+    <ul class="header__ul__container">
+      <li>Movies</li>
+      <li>Theaters</li>
+      <li>Promotions</li>
+      <li>Contact</li>
+    </ul>
+  </header>
+  <main>
+    <div class="main__stepBystep__container">
+      <div class="main__stepBystep__progresBar"></div>
+  
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">1</div>
+        <p class="main__stepBystep__box__text">Escolha o Filme</p>
+      </div>
+  
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">2</div>
+        <p class="main__stepBystep__box__text">Escolha os Assentos</p>
+      </div>
+  
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">3</div>
+        <p class="main__stepBystep__box__text">Combos</p>
+      </div>
+  
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule completed">4</div>
+        <p class="main__stepBystep__box__text">Pagamento</p>
+      </div>
+  
+      <div class="main__stepBystep__box">
+        <div class="main__stepBystep__box__circule active">5</div>
+        <p class="main__stepBystep__box__text">Review</p>
+      </div>
+    </div>
+
+    <div class="review__container">
+      <h2 class="review__title">Seu Pedido:</h2>
+      
+      <div class="review__section" id="movieSection">
+        <h3>Filme</h3>
+        <div id="movieDetails"></div>
+      </div>
+      
+      <div class="review__section" id="seatsSection">
+        <h3>Assentos</h3>
+        <div class="seats__list" id="seatsDetails"></div>
+      </div>
+      
+      <div class="review__section" id="combosSection">
+        <h3>Combos</h3>
+        <div id="comboDetails"></div>
+      </div>
+      
+      <div class="review__section" id="paymentSection">
+        <h3>Informações de Pagamento</h3>
+        <div id="paymentDetails"></div>
+      </div>
+      
+      <div class="total__price" id="totalPrice"></div>
+      
+      <div class="actions">
+        <a href="index.html" class="button secondary">Recomeçar</a>
+        <button id="confirmButton" class="button">Confirmar Compra</button>
+      </div>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="../script/review.js"></script>
+</body>
+</html>
