@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Matriz 768 pixels — atualização 3x/s</title>
+  <style>
+    canvas { 
+      image-rendering: pixelated; 
+      width: 640px; 
+      height: 480px; 
+      border: 1px solid #444;
+      display:block;
+      margin: 20px auto;
+    }
+    body { font-family: Arial, sans-serif; text-align:center; }
+  </style>
+</head>
+<body>
+  <h2>Matriz 32×24 (768 posições) — atualizando 3x/s</h2>
+  <canvas id="c" width="32" height="24"></canvas>
+  <p>Atualizações: <span id="count">0</span></p>
+
+  <script>
+    const WIDTH = 32;
+    const HEIGHT = 24; 
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+
+    const colors = new Array(WIDTH * HEIGHT).fill('#000000');
+
+   
+    function randomHex() {
+      return '#' + Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0');
+    }
+    for (let i=0; i<colors.length; i++) colors[i] = randomHex();
+
+    
+    function colorsToImageData(colorsArr) {
+      const imgData = ctx.createImageData(WIDTH, HEIGHT);
+      const data = imgData.data; 
+      for (let i = 0; i < colorsArr.length; i++) {
+        const hex = colorsArr[i].replace('#','');
+        const r = parseInt(hex.slice(0,2), 16);
+        const g = parseInt(hex.slice(2,4), 16);
+        const b = parseInt(hex.slice(4,6), 16);
+        const off = i * 4;
+        data[off] = r;
+        data[off+1] = g;
+        data[off+2] = b;
+        data[off+3] = 255; 
+      }
+      return imgData;
+    }
+
+  
+    function updateMatrix() {
+      
+      colors.pop(); 
+      colors.unshift(randomHex()); 
+
+   
+    }
+
+    
+    function draw() {
+      const img = colorsToImageData(colors);
+      ctx.putImageData(img, 0, 0);
+    }
+
+    
+    let updates = 0;
+    const counter = document.getElementById('count');
+    const INTERVAL_MS = 333;
+    draw(); 
+
+    const timer = setInterval(() => {
+      updateMatrix();
+      draw();
+      updates++;
+      counter.textContent = updates;
+    }, INTERVAL_MS);
+
+ 
+  </script>
+</body>
+</html>
